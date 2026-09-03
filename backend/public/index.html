@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Economic Village</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+
+<!-- ==================== YUKLANMOQDA ==================== -->
+<section id="scr-boot" class="screen on">
+  <div class="boot">
+    <div class="crest-wrap" id="bootCrest"></div>
+    <div class="wordmark">ECONOMIC<em>VILLAGE</em></div>
+    <div class="boot-msg" id="bootMsg">Ulanmoqda…</div>
+  </div>
+</section>
+
+<!-- ==================== HOME ==================== -->
+<section id="scr-home" class="screen">
+  <header class="topbar">
+    <div class="who">
+      <div class="avatar" id="homeAvatar">?</div>
+      <div><b id="homeName">Mehmon</b><span id="homeSub">Level 1</span></div>
+    </div>
+    <button class="icon-btn" id="btnInfoHome" aria-label="Ma'lumot">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5"/><circle cx="12" cy="8" r=".8" fill="currentColor"/></svg>
+    </button>
+  </header>
+
+  <div class="home-mid">
+    <div class="crest-wrap" id="homeCrest"></div>
+    <div class="wordmark">ECONOMIC<em>VILLAGE</em></div>
+    <div class="rule"></div>
+    <button class="btn primary" id="btnCreate">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21V10l9-7 9 7v11"/><path d="M9 21v-7h6v7"/></svg>
+      O'YIN YARATISH
+    </button>
+    <button class="btn" id="btnJoin">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>
+      O'YINGA QO'SHILISH
+    </button>
+    <button class="btn ghost" id="btnTutorial">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg>
+      DARSLIK (BOT BILAN)
+    </button>
+  </div>
+
+  <nav class="home-foot">
+    <button id="btnProfile">Profil</button>
+    <button id="btnRules">Qoidalar</button>
+  </nav>
+</section>
+
+<!-- ==================== LOBBY ==================== -->
+<section id="scr-lobby" class="screen">
+  <header class="topbar">
+    <button class="icon-btn" id="btnLobbyBack" aria-label="Orqaga">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <div class="tb-title">KUTISH XONASI</div>
+    <div style="width:36px"></div>
+  </header>
+
+  <div class="lobby">
+    <div class="code-card">
+      <span>XONA KODI</span>
+      <b id="lobbyCode">----</b>
+      <button class="mini" id="btnCopy">NUSXA</button>
+    </div>
+    <button class="btn primary" id="btnInvite">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M12 3v13M8 7l4-4 4 4"/></svg>
+      DO'STLARNI TAKLIF QILISH
+    </button>
+
+    <div class="sec-title">O'YINCHILAR <span id="lobbyCount">0/5</span></div>
+    <div id="lobbyPlayers" class="lobby-list"></div>
+
+    <div class="hint" id="lobbyHint">Kamida 3 o'yinchi kerak.</div>
+    <button class="btn primary" id="btnStart" disabled>BOSHLASH</button>
+    <button class="btn ghost" id="btnLeave">CHIQISH</button>
+  </div>
+</section>
+
+<!-- ==================== O'YIN ==================== -->
+<section id="scr-game" class="screen">
+  <header class="hud">
+    <div class="who">
+      <div class="avatar sm" id="meAvatar">?</div>
+      <div><b id="meName">—</b></div>
+    </div>
+    <button class="purse" id="btnDebt" aria-label="Moliya va qarz">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="8"/><path d="M12 8v8M9.5 10h5M9.5 14h5"/></svg>
+      <span class="money-values"><b id="meCash">0</b><small>Qarz <i id="meDebt">0</i></small></span>
+    </button>
+    <div class="pips" id="pips"></div>
+    <button class="icon-btn sm" id="btnMenu" aria-label="Menyu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </header>
+
+  <div class="banner" id="banner" hidden></div>
+
+  <div class="board-wrap">
+    <div class="board" id="board"></div>
+  </div>
+
+  <nav class="dock">
+    <button data-panel="assets">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 21V10l9-7 9 7v11z"/></svg>Mulklar
+    </button>
+    <button data-panel="deal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M7 11l-4 4 4 4"/><path d="M3 15h13a5 5 0 0 0 0-10H9"/></svg>Kelishuv
+    </button>
+    <button data-panel="economy">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14 0 18M12 3C9 6.5 9 17.5 12 21"/></svg>Iqtisod
+    </button>
+    <button data-panel="log">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 4h14v16H5z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>Tarix
+    </button>
+  </nav>
+</section>
+
+<!-- ==================== NATIJA ==================== -->
+<section id="scr-result" class="screen">
+  <div class="result">
+    <div class="crest-wrap sm" id="resultCrest"></div>
+    <div class="res-title">YAKUNIY NATIJA</div>
+    <div id="resultList" class="res-list"></div>
+    <div id="resultStats" class="res-stats"></div>
+    <button class="btn primary" id="btnHome">BOSH SAHIFA</button>
+  </div>
+</section>
+
+<!-- ==================== BOTTOM SHEET ==================== -->
+<div id="scrim" class="scrim" hidden></div>
+<div id="sheet" class="sheet" hidden>
+  <div class="grab"></div>
+  <div id="sheetBody"></div>
+</div>
+
+<div id="toast" class="toast" hidden></div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/app.js" defer></script>
+</body>
+</html>
