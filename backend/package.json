@@ -1,0 +1,35 @@
+{
+  "name": "economic-village-backend",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Economic Village — server-authoritative game backend",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "sim": "node scripts/simulate.js",
+    "audit": "node scripts/audit.js",
+    "edge": "node scripts/edge.js",
+    "test:reconnect": "node scripts/test-reconnect.js",
+    "test": "node scripts/edge.js && node scripts/audit.js 400 && node scripts/test-reconnect.js",
+    "monitor": "node scripts/monitor.js",
+    "soak": "node scripts/soak.js",
+    "check": "npm run audit && npm run edge && npm run test:reconnect && npm run monitor && npm run test:ui && npm run test:dom && npm run soak",
+    "test:ui": "node scripts/test-ui.js",
+    "test:dom": "node scripts/test-dom.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.5.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "jsdom": "^25.0.0",
+    "socket.io-client": "^4.8.3"
+  }
+}
