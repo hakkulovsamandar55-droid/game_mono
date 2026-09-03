@@ -1,0 +1,39 @@
+# ============================================================================
+# Render deploy konfiguratsiyasi
+#
+# Bitta web service: backend ham API/WebSocket, ham frontend (public/) ni
+# beradi. Alohida frontend deploy kerak emas.
+#
+# Muhim: Render'ning bepul rejasida fayl tizimi vaqtinchalik — server qayta
+# ishga tushganda SQLite bazasi yo'qoladi (davom etayotgan o'yinlar ham).
+# Doimiy saqlash uchun quyidagi `disk` blokini yoqing (pullik reja) yoki
+# Postgres'ga o'ting.
+# ============================================================================
+services:
+  - type: web
+    name: economic-village
+    runtime: node
+    plan: free
+    region: frankfurt          # O'zbekistonga eng yaqin Render regioni
+    rootDir: backend
+    buildCommand: npm ci --omit=dev
+    startCommand: node src/server.js
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: BOT_TOKEN
+        sync: false            # Render panelida qo'lda kiritiladi
+      - key: ALLOW_DEV_AUTH
+        value: "0"
+      - key: CORS_ORIGIN
+        sync: false            # masalan: https://economic-village.onrender.com
+      - key: DATA_DIR
+        value: ./data
+    # Doimiy saqlash uchun (pullik reja):
+    # disk:
+    #   name: village-data
+    #   mountPath: /var/data
+    #   sizeGB: 1
+    # va DATA_DIR ni /var/data ga o'zgartiring.
